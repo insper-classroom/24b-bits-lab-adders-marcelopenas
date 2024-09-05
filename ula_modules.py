@@ -54,7 +54,7 @@ def adder(x, y, soma, carry):
     size = len(x)
     faList = [None for _ in range(size)]
     sc = [Signal(bool(0)) for _ in range(size+1)]
-    # faList[0] = fullAdder(x[0],y[0],Signal(bool(0)), soma[0], sc[0])
+    faList[0] = fullAdder(x[0],y[0],Signal(bool(0)), soma[0], sc[0])
 
     for i in range(len(faList)):
         faList[i] = fullAdder(x[i],y[i],sc[i], soma[i], sc[i+1])
