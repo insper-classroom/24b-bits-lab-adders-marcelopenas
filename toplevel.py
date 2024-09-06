@@ -14,9 +14,8 @@ def toplevel(LEDR, SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, CLOCK_50, RESET_
     # ula
     # ---------------------------------------- #
     ic1 = adder(sw_s[0:4], sw_s[6:10], ledr_s[0:4], ledr_s[9])
-
-    # ledr_unsigned = ConcatSignal(*reversed(ledr_s))
-    # ic2 = bin2hex(HEX0, ledr_unsigned)
+    ledr_unsigned = ConcatSignal(*reversed(ledr_s))
+    ic2 = sw2hex(HEX0, ledr_unsigned)
 
     @always_comb
     def comb():
@@ -39,4 +38,4 @@ CLOCK_50 = Signal(bool())
 RESET_N = ResetSignal(0, active=0, isasync=True)
 
 top = toplevel(LEDR, SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, CLOCK_50, RESET_N)
-top.convert(hdl="VHDL")
+top.convert(hdl="verilog")
